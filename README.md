@@ -281,7 +281,7 @@ Non-Primitive data types were data types created within the object. These are ar
     let undf;
     console.log(undf);
     ```
-### Primitive Data Types:
+### Non-Primitive Data Types:
 
  - #### Array: 
 
