@@ -224,7 +224,7 @@ Primitive data types are string, number, boolean, null, undefined, symbol. As yo
 
 Non-Primitive data types were data types created within the object. These are arrays, objects, functions, dates, etc.
 
-![data-types](./img/data_types.drawio.png)
+![data-types](./img/data_types.png)
 
 ### Primitive Data Types:
 
