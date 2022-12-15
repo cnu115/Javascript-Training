@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .addColor{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="img" class='hide' src="https://i.dummyjson.com/data/products/1/3.jpg">
+    <!-- <button type="button" onclick="hideMe();">Hide Me</button>
+    <button type="button" onclick="showMe();">show Me</button> -->
+
+    <button type="button" onclick="toggleImage()">Toggle</button>
+        <br><br>
+        <hr>
+        <span onclick="loveYou()"><i class="fa-regular fa-heart" id="heart"></i></span>
+</body>
+
+<script>
+    const loveYou = () => {
+        const heart = document.getElementById('heart');
+        const classList = heart.classList;
+
+        if(classList.contains('addColor')){ 
+            classList.remove('addColor'); // It will remove the 'hide' class
+            // user unliked
+        }else{
+            classList.add('addColor') // It will add the 'hide' class
+            // user liked
+        }
+    }
+    
+    const toggleImage = () => {
+        // debugger;
+        const img = document.getElementById('img');
+        const classList = img.classList; // It will get the all the classes of the img
+
+        //If image class contain 'hide' class then only it will execute the if block or else it will go the next block
+
+        if(classList.contains('hide')){ 
+            classList.remove('hide'); // It will remove the 'hide' class
+        }else{
+            classList.add('hide') // It will add the 'hide' class
+        }
+    }
+
+    // const hideMe = () => {
+    //     // debugger;
+    //     const img = document.getElementById('img');
+    //     img.classList.add('hide');
+    //     // img.className = 'hide';
+    // }
+
+    // const showMe = () => {
+    //     const img = document.getElementById('img');
+    //     img.classList.remove('hide');
+    //     // img.className = '';
+    // }
+</script>
+
+</html>

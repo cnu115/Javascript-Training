@@ -2,114 +2,166 @@
 <html>
 
 <head>
-    <script>
-         //before es5
-        const white = '#ffff';
-        // debugger;
-
-        if(true){
-            // debugger;
-            var a = true; //it won't block the scope
-
-            //alert(a);
-            console.log('a value in the scope', a); 
-        }
-        var a = 2;
-
-        console.log('a value out of the scope', a);
-
-
-        if(true){
-            let b = true; // it will block the scope
-            
-             const green = "#agag";
-             const white = 'Please enter valid details'; 
-
-             var c = "efa";
-            var c = 2; 
-             // $, numbers, _, letters, camelCase
-
-             let $ = '';
-
-             let _ = '';
-
-            console.log(b)
-             d = 'fasdfs';
-        }
-
-        // let variable_name = "some value" // int, boolean, array, object, string, null
-
-        // let somthing;
-
-        // let boole = true;
-
-        // let numb = 2;
-
-        // let stri = "fasdfa";
-
-        
-
-        let cd = true;
-
-        let arr = [];
-
-        arr = ["cnu", 2, true] //ordered collection
-
-        ['somthing']
-
-        ['somthing', true]
-
-        ['somthing', true, 22]
-
-        ['somthing', true, 22, 42]
-
-
-        //push and pop last in last out
-
-        //unshift and shift  firstin firstout
-
-
-
-        //data types 
-
-        //PRIMITIVE
-
-        // INT, BOOLEAN, STRING, NULL, UNDEFINED, BIGINT(111111111123232323232N) (2^53-1)
-
-        // NON PRIMITIVE
-
-        // OBJECT, ARRAY
-        
-        let num = 1; //int
-        let num1 = 2;
-
-        console.log('addition:', num + num1);
-
-        let boo = true; // false
-
-        let str = 'text';
-
-        let n = null;
-
-        if(n === null){
-            //ajax
-        }
-
-        let decl; //UNDEFINED
-
-        console.log('UNDEFINED', decl);
-
-        //let b = 1;
-        //const c = 1;
-    </script>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <h1>Javascript</h1>
+    <div class="container">
+        <div class="col-sm-6">
+
+            <div id="card_info"></div>
+
+
+            <form>
+                <!-- <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input type="password" class="form-control" id="pwd">
+                </div> -->
+
+                <div class="form-group">
+                    <label for="a">a: </label>
+                    <input type="text" class="form-control email" id="a">
+                </div>
+                <div class="form-group">
+                    <label for="b">b:</label>
+                    <input type="text" class="form-control" id="b">
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="cal()">cal</button>
+                <br /><br />
+                <label for="sum">sum:</label>
+                <input type="text" class="form-control" id="sum">
+                <br /><br />
+                <button type="button" class="btn btn-primary" onclick="multiplication()">mul</button>
+
+                <br /><br />
+                <label for="mul">mul:</label>
+                <input type="text" class="form-control" id="mul">
+                <!-- <button type="button" class="btn btn-default">Submit</button> -->
+
+                <!-- <button type="button" class="btn btn-default" onclick="goodMorning()">Good Morning</button> -->
+            </form>
+        </div>
+    </div>
 </body>
 
 <script>
 
+    const geApi = () => {
+        fetch('https://dummyjson.com/products')
+            .then((response) => response.json())
+            .then(data => {
+                console.log(data);
+                data.products.map(d => {
+                    document.getElementById('card_info').insertAdjacentHTML('beforeend', '<div class="card" style="width: 18rem;"><img class="card-img-top" src=' + d.images[2] + ' alt="Card image cap"><div class="card-body"><p class="card-text">' + d.description + '</p></div></div>')
+                })
+
+            })
+    }
+    geApi();
+
+    function abValues() {
+        return {
+            a: 3,
+            b: 4
+        }
+    }
+
+    function abValues1() {
+        const abValu = {
+            a: 3,
+            b: 4
+        }
+        return 3;
+    }
+    //function <function name>
+
+    // function getABValue(){
+    //     const a_value= document.getElementById('a').value;
+    //     const b_value = document.getElementById('b').value;
+
+    //     return {
+    //         a
+    //     }
+    // }
+
+    function getAandBValue() {
+        const a_value = document.getElementById('a').value;
+        const b_value = document.getElementById('b').value;
+
+        return {
+            a_value: a_value,
+            b_value: b_value
+        }
+
+    }
+
+    function multiplication() {
+        //    debugger;
+        const obj = getAandBValue();
+
+        const mul = obj.a_value * obj.b_value;
+
+        document.getElementById('mul').value = mul;
+    }
+
+    function cal() {
+        // debugger;
+        // const a_value= parseInt(document.getElementById('a').value);
+        // const b_value = parseInt(document.getElementById('b').value);
+        const obj = getAandBValue();
+        const sum = obj.a_value * obj.b_value;
+
+        document.getElementById('sum').value = sum;
+
+    }
+
+
+    // function sort() {
+
+    //     [9,2,344]
+
+    //     // debugger;
+    //     const data = [];
+    //     const email = document.getElementById('email');
+    //     const pwd = document.getElementById('pwd');
+
+    //     // email = email.value+' admin@gmail.com';
+    //     data.push(email.value);
+    //     data.push(pwd.value);
+
+    //     console.log(data);
+    // }  
+
+    function goodMorning() {
+        const arr = ['a', 'b', 'c'];
+        console.log('array length', arr.length);
+        alert('Hey very good morning!');
+    }
+
+    // const arr = [goodMorning]
+    // console.log(arr)
+
+
+    // window.setTimeout(()=>{
+    //     goodMorning();
+    // },3000)
+    // fetch('https://example.com/profile', {
+    //     method: 'POST', // or 'PUT'
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: data,
+    // })
 </script>
 
 </html>
