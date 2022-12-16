@@ -24,19 +24,23 @@
     <button type="button" onclick="toggleImage()">Toggle</button>
         <br><br>
         <hr>
-        <span onclick="loveYou()"><i class="fa-regular fa-heart" id="heart"></i></span>
+        <span onclick="like()"><i class="fa-regular fa-heart" id="heart"></i></span>
 </body>
 
 <script>
-    const loveYou = () => {
+    const like = () => {
         const heart = document.getElementById('heart');
         const classList = heart.classList;
 
-        if(classList.contains('addColor')){ 
-            classList.remove('addColor'); // It will remove the 'hide' class
+        console.log(classList.contains('addColor'))
+
+        if(classList.contains('addColor') === false){ 
+            // debugger;
+            classList.add('addColor'); // It will remove the 'hide' class
             // user unliked
         }else{
-            classList.add('addColor') // It will add the 'hide' class
+            // debugger;
+            classList.remove('addColor') // It will add the 'hide' class
             // user liked
         }
     }

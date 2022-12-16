@@ -13,20 +13,8 @@
 <body>
     <div class="container">
         <div class="col-sm-6">
-
             <div id="card_info"></div>
-
-
             <form>
-                <!-- <div class="form-group">
-                    <label for="email">Email address:</label>
-                    <input type="email" class="form-control email" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd">
-                </div> -->
-
                 <div class="form-group">
                     <label for="a">a: </label>
                     <input type="text" class="form-control email" id="a">
@@ -35,20 +23,11 @@
                     <label for="b">b:</label>
                     <input type="text" class="form-control" id="b">
                 </div>
-
-                <button type="button" class="btn btn-primary" onclick="cal()">cal</button>
-                <br /><br />
-                <label for="sum">sum:</label>
-                <input type="text" class="form-control" id="sum">
-                <br /><br />
-                <button type="button" class="btn btn-primary" onclick="multiplication()">mul</button>
-
-                <br /><br />
-                <label for="mul">mul:</label>
-                <input type="text" class="form-control" id="mul">
-                <!-- <button type="button" class="btn btn-default">Submit</button> -->
-
-                <!-- <button type="button" class="btn btn-default" onclick="goodMorning()">Good Morning</button> -->
+                <button type="button" class="btn btn-primary" onclick="caluculation('mul', 'hey this is multiplication', 'stre')">*</button>
+                <button type="button" class="btn btn-success" onclick="caluculation('add', 'hey this is addition', 'fsa')">+</button>
+                <button type="button" class="btn btn-warning" onclick="clearTheValues()">clear</button> <br /><br />
+                <label for="result">Result:</label>
+                <input type="text" readonly class="form-control" id="result">
             </form>
         </div>
     </div>
@@ -56,112 +35,41 @@
 
 <script>
 
-    const geApi = () => {
-        fetch('https://dummyjson.com/products')
-            .then((response) => response.json())
-            .then(data => {
-                console.log(data);
-                data.products.map(d => {
-                    document.getElementById('card_info').insertAdjacentHTML('beforeend', '<div class="card" style="width: 18rem;"><img class="card-img-top" src=' + d.images[2] + ' alt="Card image cap"><div class="card-body"><p class="card-text">' + d.description + '</p></div></div>')
-                })
-
-            })
-    }
-    geApi();
-
-    function abValues() {
-        return {
-            a: 3,
-            b: 4
-        }
-    }
-
-    function abValues1() {
-        const abValu = {
-            a: 3,
-            b: 4
-        }
-        return 3;
-    }
-    //function <function name>
-
-    // function getABValue(){
-    //     const a_value= document.getElementById('a').value;
-    //     const b_value = document.getElementById('b').value;
-
-    //     return {
-    //         a
-    //     }
-    // }
-
-    function getAandBValue() {
-        const a_value = document.getElementById('a').value;
-        const b_value = document.getElementById('b').value;
-
+    const getAandBValue = () => {
+        //here parseInt is for typecasting i,e we are converting string value to the number/interger
+        const a_value = parseInt(document.getElementById('a').value);
+        const b_value = parseInt(document.getElementById('b').value);
         return {
             a_value: a_value,
             b_value: b_value
         }
-
     }
 
-    function multiplication() {
-        //    debugger;
-        const obj = getAandBValue();
-
-        const mul = obj.a_value * obj.b_value;
-
-        document.getElementById('mul').value = mul;
+    //here action is parameter
+    const caluculation = (action, description, thir) => {
+        console.log('action', action);
+        console.log('description', description);
+        console.log('thir', thir)
+        const obj = getAandBValue(); // will get the a,b value in a obj ex: {a_value:3, b_value:4}
+        let result;
+        //if block or else if block will execute only given condition value will be true
+        if(action === 'mul'){ 
+            result = obj.a_value * obj.b_value;
+        }else if(action === 'add'){
+            result = obj.a_value + obj.b_value;
+        }else{
+            result = 0;
+        }
+        document.getElementById('result').value = result;
     }
 
-    function cal() {
+    const clearTheValues = () => {
         // debugger;
-        // const a_value= parseInt(document.getElementById('a').value);
-        // const b_value = parseInt(document.getElementById('b').value);
-        const obj = getAandBValue();
-        const sum = obj.a_value * obj.b_value;
-
-        document.getElementById('sum').value = sum;
-
+        document.getElementById('a').value = '';
+        document.getElementById('b').value = '';
+        document.getElementById('result').value = '';
     }
 
-
-    // function sort() {
-
-    //     [9,2,344]
-
-    //     // debugger;
-    //     const data = [];
-    //     const email = document.getElementById('email');
-    //     const pwd = document.getElementById('pwd');
-
-    //     // email = email.value+' admin@gmail.com';
-    //     data.push(email.value);
-    //     data.push(pwd.value);
-
-    //     console.log(data);
-    // }  
-
-    function goodMorning() {
-        const arr = ['a', 'b', 'c'];
-        console.log('array length', arr.length);
-        alert('Hey very good morning!');
-    }
-
-    // const arr = [goodMorning]
-    // console.log(arr)
-
-
-    // window.setTimeout(()=>{
-    //     goodMorning();
-    // },3000)
-    // fetch('https://example.com/profile', {
-    //     method: 'POST', // or 'PUT'
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: data,
-    // })
 </script>
 
 </html>
