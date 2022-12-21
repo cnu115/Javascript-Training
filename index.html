@@ -50,13 +50,42 @@
             elem.setAttribute("src", value); //<img src="">
             elem.setAttribute('alt', "no-image " + index) // <img alt="">
             card_info.appendChild(elem);
-            console.log(`card info ${card_info.innerHTML}`)
-
+            // console.log(`card info ${card_info.innerHTML}`);
         })
 
     }
+    //inital state, pending state and fulfilled state
+    const prom = new Promise((re, reject) => {
+        window.setTimeout(() => {
+            try {
+                displayImg(); //success keyword
+                resolve('This function execute');
+            } catch (error) {
+                reject(error)
+            }
+        }, 5000);
+    });
 
-    displayImg();
+    console.log(prom); //promise state intial state and pending state
+    prom.then(data => {
+        //this is for success case
+        console.log('data', data);
+        console.log(prom); //promise state fulfilled state
+    }).catch((error) => {
+        //this is for failure case
+        console.log('error', error);
+    })
+
+    // window.setInterval(() => {
+    //     console.log('Hi')
+    // }, 10000)
+
+    //const setTimeout = (function(), time) => {
+
+    //}
+
+
+
 
     const getAandBValue = () => {
         //here parseInt is for typecasting i,e we are converting string value to the number/interger
