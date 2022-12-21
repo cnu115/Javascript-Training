@@ -413,3 +413,215 @@ Non-Primitive data types were data types created within the object. These are ar
           let str = arr.join(',');
           console.log( str );
           ```
+        - **.map()**
+
+          Let me explain how it works with a simple example. Say you have received an array containing multiple objects – each one representing a person. The thing you really need in the end, though, is an array containing only the id of each person.
+
+          ```js
+          // What you have
+          var officers = [
+            { id: 20, name: 'Captain Piett' },
+            { id: 24, name: 'General Veers' },
+            { id: 56, name: 'Admiral Ozzel' },
+            { id: 88, name: 'Commander Jerjerrod' }
+          ];
+          // What you need
+          [20, 24, 56, 88]
+          ```
+          There are multiple ways to achieve this. One of the method `.map()`
+
+          ```js
+          const officersIds = officers.map((officer, index) => officer.id);
+          console.log('officersIds', officersIds);
+          ```
+ - #### Object:
+
+   JavaScript is an object-based language and in JavaScript almost everything is an object or acts like an object. 
+
+   - ####  The object literal is the simplest way to create objects:
+
+     The simplest way to create an object is to use the object literal. We define a set of properties inside curly braces `{}` separated by commas. Below is an example.
+
+      ```js
+      const employee = {
+        name: 'John',
+        role: 'Web developer'
+      };
+      ```
+
+     The previous object has two properties. The first property has the key `name` and the value `John`.
+   - #### Properties can be accessed using the dot and the bracket notations
+
+     Properties can be accessed using the dot notation when the key is a valid identifier.
+
+     ```js
+     console.log(employee.name);
+     ```
+
+     When the key is not a valid identifier we need to use the bracket notation.
+
+     ```js
+     console.log(employee["name"]);
+     ```
+
+  - #### Object can store other objects
+
+    The value of a property can have any type. Properties can store objects. Consider the next example where developer is an object not a string.
+
+    ```js
+    const game = {
+      name : 'Fornite',
+      developer: {
+        name: 'Epic Games',
+        founder: 'Tim Sweeney'
+      }
+    };
+    ```
+  - #### Objects can store functions
+
+    The property value can be of any type including functions.The following object has the property toString storing a function.
+
+    ```js
+    const game = {
+      name : 'Fornite',
+      toString: function(){
+        return this.name;
+      }
+    };
+    console.log(game.toString());
+    //Fornite
+    ```
+    When a function is stored on an object it can be used as a method. Notice that in methods we can use the this keyword to access properties on the associated object.
+
+  - #### Arrays are emulated using objects
+
+    Yes, arrays are emulated using objects. Consider the following array.
+
+    ```js
+    const games = [
+      {name: 'Candy Crush', developer: 'King'},
+      {name: 'Angry Birds', developer: ' Rovio Entertainment'}
+    ];
+    console.log(games[0]);
+    //using map
+    games.map((game,index) => console.log(g.name)); //
+    ```
+### Functions
+
+  - #### What is a function?
+
+    A function is a block of organized code used to perform a task, and it helps you write clean and reusable code.
+
+    - **What does a JavaScript function look like?**
+      - A JavaScript function is defined with the function keyword, followed by a name and parentheses ().
+      - Function names can contain letters, digits, underscores, and dollar signs (same rules as variables).
+      - The parentheses may include parameter names separated by commas:(parameter1, parameter2, …)
+      - The code to be executed, by the function, is placed inside curly brackets: {}
+      - A JavaScript function can be defined as a declaration or as an expression.
+
+    ```js
+    //function declaration
+    function f1(parameter1, parameter2){
+      //code to be executed
+    }
+    // arrow function
+    const f1 = (parameter1, parameter2) => {
+
+    }
+    ```
+    We need to give the function a name that we will use when we want to call this function. Inside the parenthesis, we define the parameters this function can receive, and inside brackets, we write to code that needs to be executed when this function is called.
+
+    - **What is function scope?**
+
+      The function scope refers to the variable access, any variable defined inside the function has function/local scope, which means are accessible only inside the function.
+
+      ```js
+
+      let variable1;
+
+      const name = (param) => {
+        let variable2
+      }
+      ```
+    - **Functions can be passed to other functions**
+      Functions can be passed as parameters to the other function. For example, if you need to filter an array, you can create a filter function and pass the function as a parameter to the built-in array filter function.
+
+      ```js
+      const isEven = (target) => {
+        return target % 2 === 0;
+      }
+      const list = [1,2,3,4,5,6];
+      list.filter(isEven);
+      ```
+### Conditional Statements
+  `What is a conditional statement?` Well, conditional statements allow us to create a condition that will equate to either true or false. Should our conditions prove to be true, we can then choose to do something to our data. On the other hand, should our conditions prove to be false, they would be excluded from that something happening. But I would not count them out just yet as we are able to create multiple conditional statements to fit our functions needs. Let’s jump right into it.
+
+  - **If Statement**
+
+    The most common conditional statement as a developer that you will likely come across will be an if statement. An if statement takes in a condition that we set, should that condition prove to be true we can then do something. Let’s take a look at the example below as we create a pseudo if statement to help get a visual representation of the format as well.
+
+    ```js
+    if(condition){
+      //do somthing
+    }
+    ```
+
+    As you can see, we start with an if, then within our brackets is where we set our condition. Should that condition be true we will enter our curly brackets and probably do something before getting to the outside. Should our condition be false though, we will not even enter the curly brackets to begin with and end up where our outside is. Outside is here to represent the outside of the if statement and would most likely be the next line of code within your function. Let’s take a look at an if statement in action in the example function below.
+
+    ```js
+    const ifStatement = (num) => {
+        let answer = ''
+        if(num === 7){
+            answer = '7 is my favorite'
+        }
+
+        if(num === 24){
+           answer = '24 is my favorite'
+        }
+
+        return answer;
+    }
+    console.log(ifStatement(24));
+    // 24 is my favorite
+    ```
+  - **Else If Statement**
+    An else if statement looks the same as an if statement but with one difference. Else just needs to be in front of our if, otherwise everything looks and runs identical. The only different is that we will never lead with an else if statement. We will always start with an if statement, then should we need additional conditional statements they will always follow with else if should we need conditions. Let’s take a look at the same example but with our else if’s put into place.
+    ```js
+    const ifStatement = (num) => {
+        let answer = ''
+        if(num === 7){
+            answer = '7 is my favorite'
+        }else if(num === 24){
+           answer = '24 is my favorite'
+        }
+
+        return answer;
+    }
+    console.log(ifStatement(24));
+    // 24 is my favorite
+    ```
+  - **Else Statement**
+    An else statement looks and acts a little different then the two previous statements that we have looked at. An else statement does not take in any conditions because its built-in condition is to run should all other if and/or else if statements fail. And for this reason, else statements are always placed last in your conditional statements. Think of it as always being the last conditional to run in your line of conditional statements. Let’s take a look at the example blow where we insert an else statement.
+
+    ```js
+    const ifStatement = (num) => {
+        let answer = ''
+        if(num === 7){
+            answer = '7 is my favorite'
+        }else if(num === 24){
+           answer = '24 is my favorite'
+        }else{
+          answer = 'not my favorite'
+        }
+
+        return answer;
+    }
+    console.log(ifStatement(44));
+    // 24 is my favorite
+    ```
+
+
+
+
+
+
