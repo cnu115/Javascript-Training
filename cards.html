@@ -157,14 +157,12 @@
             .then(data => {
                 // debugger;
                 console.log('products', data.products[2].description); //statically calling the array
-
                 const row_container = document.getElementById('row_container');
-
                 data.products.map((product, index) => {
                     // debugger;
-                    let url = ''; //url = '';
+                    let url = 'https://i.pinimg.com/originals/51/0b/e6/510be695244b357541dbd6ec79295fbd.jpg'; //url = '';
                     //if images are zero image url will be ''
-                    if(product.images.length > 0){ 
+                    if(product.images.length > 0){ // ture
                         url = product.images[0]; // url = 'http://image.jpg'
                     }
                     // console.log('product',product.description); // printing the description
@@ -178,7 +176,7 @@
                                         <p class="card-text">${product.description}</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="./product.html?id=${product.id}">View</a></button>
                                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                             </div>
                                             <small class="text-muted">9 mins</small>
