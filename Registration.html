@@ -24,7 +24,7 @@
             <label class="control-label" for="password">Password</label>
             <div class="controls">
                 <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                <p class="help-block hidden">Password should be at least 4 characters</p>
+                <p class="help-block"></p>
             </div>
         </div>
 
@@ -32,9 +32,9 @@
             <!-- Password -->
             <label class="control-label" for="password_confirm">Password (Confirm)</label>
             <div class="controls">
-                <input type="password" id="password_confirm"  name="password_confirm" placeholder=""
+                <input type="password" id="password_confirm" onchange="checkConfirmPassword(this)"  name="password_confirm" placeholder=""
                     class="input-xlarge">
-                <p class="help-block hidden">Please confirm password</p>
+                    <p class="help-block"></p>
             </div>
         </div>
 
@@ -42,13 +42,34 @@
             <!-- Button -->
             <div class="controls">
                 <button type="button" onclick="formSubmit(this)" class="btn btn-success">Register</button>
+                <button type="button" onclick="clearStorage()" class="btn btn-primary">Clear Storage</button>
+
             </div>
         </div>
     </fieldset>
 </form>
 
 <script>
+
+    const clearStorage = () => {
+        localStorage.clear();
+        sessionStorage.clear();
+    }
+
+    const checkConfirmPassword = (element) => {
+        // debugger;
+        const confirm_password = element.value; // document.getElementById('password_confirm');
+        const password = document.getElementById('password');
+        if(password.value !== confirm_password){
+            element.nextElementSibling.innerHTML = 'Password not match'
+        }else{
+            element.nextElementSibling.innerHTML = ''
+        }
+    }
+
+
     const emailOnchange = (element) => {
+        // debugger;
         //element nothing but document.getElementById('email');
         const email = element.value; // user input value
         const getEmail = localStorage.getItem('email'); // localstorage value
