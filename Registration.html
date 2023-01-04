@@ -32,9 +32,9 @@
             <!-- Password -->
             <label class="control-label" for="password_confirm">Password (Confirm)</label>
             <div class="controls">
-                <input type="password" id="password_confirm" onchange="checkConfirmPassword(this)"  name="password_confirm" placeholder=""
-                    class="input-xlarge">
-                    <p class="help-block"></p>
+                <input type="password" id="password_confirm" onchange="checkConfirmPassword(this)"
+                    name="password_confirm" placeholder="" class="input-xlarge">
+                <p class="help-block"></p>
             </div>
         </div>
 
@@ -51,6 +51,25 @@
 
 <script>
 
+//login page function
+    const login = () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const localStorageEmail = localStorage.getItem('email')
+        const localStoragePassword = localStorage.getItem('password');
+        if (email === localStorageEmail && localStoragePassword === password) {
+            sessionStorage.setItem('login', true);
+            window.location.href = '/home.html'
+        }
+
+    }
+    //home or index or products
+    const isLogin = sessionStorage.getItem('login');
+    if (isLogin === false) {
+        window.location.href = '/login.html'
+    }
+
+
     const clearStorage = () => {
         localStorage.clear();
         sessionStorage.clear();
@@ -60,9 +79,9 @@
         // debugger;
         const confirm_password = element.value; // document.getElementById('password_confirm');
         const password = document.getElementById('password');
-        if(password.value !== confirm_password){
+        if (password.value !== confirm_password) {
             element.nextElementSibling.innerHTML = 'Password not match'
-        }else{
+        } else {
             element.nextElementSibling.innerHTML = ''
         }
     }
@@ -83,16 +102,41 @@
         }
     }
     const formSubmit = (formInfo) => {
-        // debugger;
+        debugger;
         const email = document.getElementById('email');
         const password = document.getElementById('password');
         const password_confirm = document.getElementById('password_confirm');
+
+        if (email.value === '') {
+            email.nextElementSibling.innerHTML = 'Please enter email';
+        } else {
+            emptyErrorBlock(email);
+        }
+
+        if (password.value === '') {
+            password.nextElementSibling.innerHTML = 'Please enter password';
+        } else {
+            emptyErrorBlock(password);
+        }
+
+        if (password_confirm.value === '') {
+            password_confirm.nextElementSibling.innerHTML = 'Please enter confirm password';
+        } else {
+            emptyErrorBlock(password_confirm);
+            checkConfirmPassword(password_confirm);
+        }
 
         localStorage.setItem('email', email.value);
         localStorage.setItem('password', password.value);
         localStorage.setItem('password_confirm', password_confirm.value);
 
         console.log(localStorage.getItem('email'))
+
+    }
+
+    const emptyErrorBlock = (nameOfTheInput) => { //element - email,password, name etc ..
+        nameOfTheInput.nextElementSibling.innerHTML = '';
+        nameOfTheInput.style.border = '2px solid green';
 
     }
 </script>
