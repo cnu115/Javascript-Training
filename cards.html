@@ -88,6 +88,9 @@
                 aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <button class="danger" onclick="logout()" type="button">
+                logout
+            </button>
         </div>
     </div>
 </header>
@@ -149,6 +152,16 @@
 
 
 <script>
+
+    const logout = () => {
+        sessionStorage.removeItem('login');
+        window.location.href = '/login.html';
+        // sessionStorage.setItem('login', false);
+    }
+    const isLogin = sessionStorage.getItem('login');
+    if (isLogin === null || isLogin === "false") {
+        window.location.href = '/login.html';
+    }
     const pageLoad = () => {
         fetch('https://dummyjson.com/products') //this we are using for the api call
             .then(res => {
