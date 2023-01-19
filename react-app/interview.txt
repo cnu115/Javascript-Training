@@ -1,0 +1,27 @@
+1) What is dom ?
+
+HTML document as a tree structure wherein each node is an object representing a part of the document.
+
+2) What is virtual dom ?
+
+React uses the virtual DOM as a strategy to compute minimal DOM operations when re-rendering the UI. 
+
+3) Diff b/w virtual dom and real dom ?
+
+A virtual DOM object has the same properties as a real DOM object, but it lacks the real thing's power to directly change what's on the screen. Manipulating the DOM is slow. Manipulating the virtual DOM is much faster, because nothing gets drawn onscreen.
+
+4) What is bind ?
+
+With the bind() method, an object can borrow a method from another object.
+
+5) What are the lifecycle methods in the react ? 
+
+- componentDidMount()
+    is invoked immediately after a component is mounted (inserted into the tree)
+- render()
+    The render() method is the only required method in a class component. The render() function should be pure, meaning that it does not modify component state, it returns the same result each time it’s invoked, and it does not directly interact with the browser.
+
+6) What is class ?
+    - Class is a set of functions/methods 
+    - Using class we can use state variables
+    - Using class we can able to inheritance other Components

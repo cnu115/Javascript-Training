@@ -5,10 +5,10 @@ import Header from './Components/layouts/Header';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
         <Header />
-        <Router />
-      </div>
+        <div className='container'>
+          <Router />
+        </div>
     </BrowserRouter>
   );
 }
