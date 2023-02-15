@@ -623,5 +623,497 @@ Non-Primitive data types were data types created within the object. These are ar
 
 
 
+## REACT JS
+
+## Introduction
+
+- ### What is React?
+
+  React.js builds user interfaces for single-page web apps by dividing the UI into composable elements. React.Js is a UI library, that was originally developed as an in-house library for Facebook, and then it was later open-sourced in 2013. It's famous and mostly used for a multitude of reasons
+
+- ### Why Use React.js?
+
+  - #### Easy To Learn:
+
+    Since it requires a minimal understanding of JavaScript and HTML, the learning curve is fairly low. In some cases, we will even be using the ‘vanilla DOM JavaScript API’(you’ll see what I mean later), which means that the programmer doesn’t need to learn anything new before getting started.
+
+  - #### Reusable Components:
+
+    If you’ve developed simple websites in HTML, there might’ve been times where you wanted to group a bunch of HTML elements and then save them into some sort of ‘variable’ so that it could be re-used later on. For a developer, this is a lifesaver. React has the ability to implement such a facility.
+
+## Getting Started: Installing React
+
+First, go to the terminal and then type,
+
+```sh
+npx create-react-app app-name
+```
+
+This instruction creates a template of a React application with the name of `**app-name**` .
+
+_Note:_ `**_npx_**` _is not a typo. It is a package runner command included within_ `**_npm_**` _._
+
+Now, you need to navigate to the directory of this application and then view it in your browser like so:
+
+```sh
+cd app-name  
+npm start
+```
+
+If the above operation is successful, your browser will open up to a URL of `**localhost:3000**` . This is the output in the browser
+
+![](./img/1_pteOH-KRaRkCvhKT80D88A.png)
+
+Output in the browser
+
+Now let’s create a simple Hello World! application with this project.
+
+Hello World! — With React
+=========================
+
+Within your project directory, go to `**src/index.js**` and replace the contents of the file `**index.js**`as follows:
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App/>
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+```
+
+Code to write in index.js
+
+*   `**Lines 1 and 2**` :Importing the `**react**` and `**react-dom**` libraries. The `**react**` module is used to write HTML code within JavaScript(also known as JSX) and `**react-app**` is used to execute the `**render**` function that will display the contents onto the page.
+*   `**Line 5**`: Render an `**h1**` element in a container which has an `**id**` of root. The explanation of this method is done in the next part.
+
+The output of the code is as follows:
+
+```
+Hello world!
+```
+
+The output of the code
+
+_Note: You might be wondering that HTML tags within JavaScript are incorrect syntax. You’re absolutely right, but the React Library uses its own language that is similar to JavaScript but can use JSX within the language._
+
+The render method
+=================
+
+The `**root.render**` method can be explained as follows:
+
+```js
+const container = Where do I want to render
+const root = createRoot(container); // lets us render to the page
+root.render(Element I want to render)
+```
+
+Syntax
+
+As the syntax suggests, the
+
+*   The `container` object specifies where you want to display the element. In normal convention, it’s a `div` element with the id of `root`. We use the JavaScript DOM API to identify this such element.
+*   The `root.render`function specifies **what** element you want to display the element. In the above example, we rendered an `h1` element with the text `Hello World`.
+
+_Question: Where can I find this_ `**_div_**` _element that has the_ `**_id_**` _of_ `**_'root’_**` _?_
+
+Look into the code of the HTML file, `**public/index.html**` . Notice at `**line 31**` :
+
+```html
+  <div id='root'></div>
+```
+
+Line 31 in index.html
+
+All of the elements we specify in the `**element**` argument will be displayed within the `**div**` element that has the specified `**id**` of `**root**` .
+
+Thus, the compiler tells the browser that: _the_ `**_element_**` _will be displayed within_ `**_container_**` _._
+
+But there are several things you should know when using this method:
+
+Things to know about root.render()
+----------------------------------
+
+The `**root.render**` method **cannot contain two-parent elements in the first argument**. The example below is wrong and will give you an error:
+
+```js
+root.render(<h1>First Element</h1><h2>Second Element</h2>)
+```
+
+Wrong code
+
+Instead, you can do this:
+
+```js
+root.render(<div>
+  <h1>First Element</h1>
+  <h2>Second Element</h2>
+</div>
+)
+```
+
+We can specify one single parent element to display 2 child `**h1**` elements on the page.
+
+We can even display a small unordered list as follows:
+
+```js
+root.render(<ul>
+  <li>First Element</li>
+  <li>Second Element</li>
+</ul>
+)
+```
+
+Ordered list in React
+
+In practical cases though, it’s not feasible to insert 40+ lines of HTML in the `**render**` method. This is where **Functional Components** come into place.
+
+Functional Components
+=====================
+
+Let’s take this piece of HTML code:
+
+```html
+<table border="0" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Firm</th>
+            <th>0rg</th>
+            <th>Lob</th>
+            <th>Sub Lob</th>
+            <th>Business Plans</th>
+            <th>Business Components</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>BT0</ th>
+            <td>2</td>
+            <td>15</td>
+
+        </tr>
+        <tr>
+        <tr class="UbTotat ROWS">
+            <td colspan=" 3" class="sub-total-text">Sub Total</td>
+            <td>6</td>
+            <td>15</td>
+        </tr>
+</table>
+```
+
+Can this code be made modular?
+
+As a React developer, it’s not viable to put so many elements within the `**render**` method. It is good practice to implement modularity.
+
+You can put the elements you want to render within a separate function.
+
+Core Idea
+---------
+```js
+function ComponentName() {  
+     return(   
+      <component> </component>  
+   )  
+}
+root.render(<ComponentName/> , document.getElementById('root'))
+```
+
+`**component**` is the HTML element you want to render, like `**h1**` or `**p**` .
+
+Basic Example
+-------------
+
+As an example, let’s rewrite the function of the Hello World! app.
+
+```js
+function MyInfo() {
+  return ( <hi1>
+    Hello World with Functional Components
+  </h1>
+)
+```
+
+Basic Functional Components example
+
+_Note: Always remember to use_ `**_return_**` _on your elements, otherwise, it will throw an error_
+
+To render it,
+
+```js
+root.render(<MyInfo />);
+```
+
+Rendering a component
+
+As you can notice, we can write our function as a JSX tag.
+
+Keep in mind that you should
+
+*   use **self-closing tags.**
+*   Your function should **start with a capital letter.**
+
+The code gives the following output
+
+```
+Hello World in functional components
+```
+
+Code output
+
+Here also, we cannot have multiple parent elements. Like before, we will use one parent element with two child elements.
+
+```js
+function MyApp() {
+  return (
+    <div>
+      <h1>Hello World in functional components</h1>
+      <h1> This is another element </h1>
+    </div>
+  )
+}
+```
+
+Multiple elements in a functional component
+
+Exercise
+--------
+
+As a little task, I want you to render an `**h1**` element with your name in it, and then write a list that contains 3 facts about you. Perform this activity using functional components.
+
+**Solution**: We cannot have two parents elements. Let’s use a `**div**` and then insert an `**h1**` element followed by a list(`**ul**`) .
+
+```js
+function MyApp() {
+return(
+  <div>
+    <h1> Srinivas </h1>
+    <ul> Age : 18 </ul>
+  </div>
+  )
+}
+```
+
+And then it will be rendered.
+
+The output of the code is as follows:
+
+#### Srinivas
+- Age: 18
+
+The output of the code
+
+In real-life projects, it is common practice to put your functional components within separate files as it makes your program more modular.
+
+Move Functional Components Into Separate Modules
+================================================
+
+Let’s say your functional component is too complex. As a developer, you want to move your component into another file so that it can be used in your main file. Thus, this makes your program modular. Furthermore, modularity also makes your code look neater.
+
+Core Idea
+---------
+
+First, create a functional component in a separate file. Then, we will export it as follows:
+
+**export default ComponentName**
+
+`**ComponentName**` is the name of your functional component.
+
+Basic Example
+-------------
+
+Let’s rewrite the above exercise.
+
+Create a new file, called `**MyApp.js**` and write your code as follows:
+
+```js
+import React from 'react';
+function MyApp() {
+  return (
+      <div>
+        <h1>Srinivas</h1>
+        <ul>
+          <li>Age: 18</1i>
+          <li>occupation: student </1i>
+        </ul>
+        <h1> This was done through modular components </h1>
+      </div>
+  )
+}
+export default MyApp;
+```
+
+Functional Component in a separate file
+
+*   `**Line 1**` : Import the `**react**` module to use JSX tags within our code
+*   `**Lines 2–12**` : Our functional component
+*   `**Line 13**` : Export our `**MyApp**` function so that it could be used within our `**index.js**` file.
+
+Now we can use it in our `**index.js**` file like so:
+
+```js
+ import React from "React";
+ import {createRoot} from "react-dom/client";
+ import MyApp from "./MyApp";
+ const container = document.getElementById('app');
+ const root = createRoot(container);
+ root.render(<MyApp />)
+```
+
+*   `Line 3`: We will use the `**import**` keyword to use the `**MyApp**` component. **Always remember to use relative paths to specify your module**. First-party modules like `**react**` don’t need relative paths.
+*   `Line 7`: Render the `**MyApp**` component.
+
+The output of the code is as follows:
+
+```text
+Srinivas
+
+Ager l3
+occupation: student
+
+This was done through modular components
+
+```
+
+The output of the code
+
+Parent/Child Components
+=======================
+
+Sometimes, even when writing HTML tags within functions becomes too complex. You cannot write so many lines of code within a function as it seems unreadable.
+
+You can nest your functional components as much as you want
+
+Core Idea
+---------
+
+Define basic functional components
+
+```js
+function MyFirstComponent() {  
+    return(   
+     <component> </component>  
+   )  
+}
+```
+
+Use it in a second functional component
+
+```js
+function MySecondComponent() {  
+  return (  
+    <div>  
+      <MyFirstComponent/>  
+      <!--further code here -->  
+    </div>  
+  )  
+}
+```
+
+And then render it
+
+**root.render(<MySecondComponent/>);**            
+
+Basic Example
+-------------
+
+As an example, let’s define a footer element in a separate file and then use it.
+
+In a file `**Footer.js**`
+
+And then to use it in `**App.js**` :
+
+Notice that our `**Footer**` element was used in `**Line 13**`
+
+Now let’s render `App` element within `**index.js**`
+
+root.render(<App/>);
+
+Recap
+=====
+
+Hello World App
+---------------
+
+```js
+import React from "react"  
+import ReactDOM from "react-dom"**root.render(<h1> Hello World </h1>);**
+```
+
+Functional Components
+---------------------
+```js
+function MyComponent() {  
+  return(  
+    <component>   
+    </component>  
+    )  
+}
+```
+Functional Components in Another File
+-------------------------------------
+
+*   Define a component, `**MyComponent.js**` and export
+
+```js
+function MyComponent() {  
+  return(  
+    <component> </component>  
+    )  
+}
+```
+**export default MyComponent**
+
+*   Use in another file `**index.js**` ,
+
+```js
+import React from "react"  
+import ReactDOM from "react-dom"  
+import MyComponent from "./MyComponent"\
+```
+
+Nested Components
+-----------------
+
+*   Define the first component, `**MyComponent.js**` and export
+
+```js
+function MyComponent() {  
+  return(  
+   <component> </component>  
+    )  
+}
+export default MyComponent
+```
+
+*   Define the second component, `**App.js**` and export
+
+And then use in `**index.js**`
+
+```js
+import React from "react"  
+import ReactDOM from "react-dom"  
+import App from "./App";
+```
+
+External Resources:
+-------------------
+
+*   [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html)
+*   [Hello World — React](https://reactjs.org/docs/hello-world.html)
+*   [React Render HTML- W3 Schools](https://www.w3schools.com/react/react_render.asp)
 
 

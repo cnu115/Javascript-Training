@@ -1,0 +1,70 @@
+<h1>Interview Questions</h1>
+
+<button onclick="clickFunction(this)">Click event</button>
+
+<script>
+    class Test {
+        constructor() {
+
+        }
+        // This keyword example
+        // In JavaScript, the this keyword refers to an object.
+        // Which object depends on how this is being invoked (used or called).
+
+        // 1. In an object method, this refers to the object. 
+        obj = {
+            name: "cnu",
+            funName: function () {
+                console.log('this', this) // In an object method, this refers to the object. 
+            }
+        }
+
+
+        // 2.In an event, this refers to the element that received the event. Methods like call(), apply(), and bind() can refer this to any object.
+        clickFunction = (e) => {
+            // debugger;
+        }
+        address = {
+            h_no: "1-142",
+            pinCode: "521175"
+        }
+
+        printAddress(a, b) {
+            // debugger;
+            console.log('printAddress this object', this, a + b);
+        }
+
+
+
+    }
+    const name = 'cnu';
+    let test = new Test();
+
+    // test.printAddress.bind(name)(1,2);
+    test.printAddress.call(name, 1, 2);
+    test.printAddress.apply(name, [1, 2]);
+
+    let counter = (function () {
+        debugger;
+        let privateCounter = 0;
+        function changeBy(val) {
+            debugger;
+            privateCounter += val;
+        }
+        return {
+            increment: function () {
+                debugger;
+                changeBy(1);
+            },
+            decrement: function () {
+                debugger;
+                changeBy(-1);
+            },
+            value: function () {
+                debugger;
+                return privateCounter;
+            }
+        };
+    })();
+counter.value()
+</script>

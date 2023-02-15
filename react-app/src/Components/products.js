@@ -40,10 +40,10 @@ class Products extends Component {
         console.log('calling componentDidMount')
         this.fetchProducts();
         //normal function
-
-        // window.setTimeout(function(){
-        //     console.log(this.state.heading);
-        // }.bind(this),1000);
+        const a = 5;
+        window.setTimeout(function(){
+            console.log(this.state.heading);
+        }.bind(this),1000);
 
         //arrow function
         window.setTimeout(() => {
@@ -113,7 +113,10 @@ class Products extends Component {
         console.log('calling render', this.state)
         return (
             <div className='row'>
-                {this.state.isModalShow && <ProductView closeModalFun={this.closeModal} name="bhasker" productViewData={this.state.productViewData}/> }
+                {this.state.isModalShow && 
+                <ProductView closeModalFun={this.closeModal} name="bhasker" productViewData={this.state.productViewData}>
+                   <div><span>hello</span></div>
+                </ProductView> }
                 {this.state.isLoader === true && <Loader />}
                 {(this.state.isDataLoaded === true && this.state.isModalShow ===false )? this.getHeading() : ''}
                 {this.state.isModalShow ===false && this.getCardHtml()} 

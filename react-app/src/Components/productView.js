@@ -7,7 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 class ProductView extends Component {
     constructor(props){
         super(props)
-        console.log('props', props)
+        console.log('props', props.children)
         this.state= {
             sayHi: 'Hi'
         }
@@ -27,7 +27,7 @@ class ProductView extends Component {
             <Modal.Dialog>
                 <Modal.Header>
                     <Modal.Title>{title} - {this.state.sayHi}</Modal.Title>
-                    <button onClick={()=> this.closeModal()} type="button" class="btn-close" aria-label="Close"></button>
+                    <button onClick={()=> this.closeModal()} type="button" className="btn-close" aria-label="Close"></button>
                 </Modal.Header>
 
                 <Modal.Body>

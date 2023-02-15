@@ -7,15 +7,14 @@ const Router = () => {
     return (
         <div>
             <Switch>
+                <Route exact path="/" component={Main} />
                 <Route path="/products">
                     <Products />
                 </Route>
                 <Route path="/users">
                     <Users />
                 </Route>
-                <Route path="/">
-                    <Main />
-                </Route>
+
             </Switch>
         </div>
     )
