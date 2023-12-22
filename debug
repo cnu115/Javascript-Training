@@ -1,0 +1,5 @@
+In Apache NiFi, a primary node is designated dynamically within a cluster. When you have multiple nodes in a NiFi cluster, the system will automatically choose a primary node based on the current cluster state. This primary node is responsible for managing the flow of data and handling coordination tasks.
+
+NiFi uses the ZooKeeper ensemble for cluster coordination. ZooKeeper helps in maintaining a shared state across the nodes and electing a primary node. If the current primary node fails or becomes unreachable, ZooKeeper will facilitate the election of a new primary node from the available nodes in the cluster.
+
+Therefore, the assignment of the primary node label is handled internally by NiFi through the coordination provided by ZooKeeper, and it's not something that you explicitly configure. The primary node may change dynamically based on the cluster's health and status.
